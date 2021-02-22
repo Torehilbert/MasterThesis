@@ -1,0 +1,2 @@
+python reproduce_resnet_cifar10.py -resnet_stem_params 64 5 1 -resnet_stem_max_pool=1 -resnet_stem_max_pool_size=3 -resnet_block_sizes 3 4 6 3 -resnet_bottleneck_units=1 -resnet_filter_sizes 256 512 1024 2048 -resnet_size_reductions 0 1 1 1 -epochs=120 -batch_size=32
+pause

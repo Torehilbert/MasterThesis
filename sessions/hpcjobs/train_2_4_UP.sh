@@ -1,0 +1,23 @@
+#!/bin/sh
+#BSUB -q gpuv100
+#BSUB -J C24_UP
+#BSUB -n 8
+#BSUB -gpu "num=1:mode=exclusive_process"
+#BSUB -W 23:59
+#BSUB -R "rusage[mem=3GB]"
+#BSUB -u tore.hilbert@hotmail.com
+#BSUB -B
+#BSUB -N
+#BSUB -o gpu-%J.out
+#BSUB -e gpu_%J.err
+
+##nvidia-smi
+
+# Load the modules
+module load python3/3.7.5
+module load cuda/10.0
+module load cudnn/v7.6.5.32-prod-cuda-10.0
+
+python3 ~/Speciale/Code/sessions/train_manual.py -path_training_data HPC \
+ -epochs=200 -lr_steps 125 200 250 -aug_noise=0.25 -weight_decay_l2=0.0001 \
+ -resnet_n_channels=2 -use_channels 2 4 -resnet_block_sizes 5 7 5 -resnet_filter_size 64 128 256

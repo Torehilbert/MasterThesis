@@ -1,0 +1,1 @@
+python reproduce_resnet_cifar10.py -resnet_block_sizes 3 3 3 -epochs=100
